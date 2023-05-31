@@ -1,11 +1,34 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 import { format, formatDistanceToNow } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
-export function Post({ author, publishedAt, content }) {
+
+interface Author {
+  id: number;
+  name: string;
+  avatarUrl: string;
+  role: string;
+}
+
+interface Content {
+  type: "paragraph" | "link";
+  content: string;
+}
+
+export interface PostType {
+  author: Author;
+  publishedAt: Date;
+  content: Content[];
+}
+
+export interface PostProps {
+  post: PostType;
+}
+
+export function Post({ post }: PostProps) {
   const [comments, setComments] = useState([
     "Post muito bacana!",
     "Parabéns pelo projeto!",
@@ -14,24 +37,24 @@ export function Post({ author, publishedAt, content }) {
 
   const [newCommentText, setnewCommentText] = useState("");
 
-  function handleCreatenewCommentText() {
+  function handleCreateNewCommentText(event: FormEvent) {
     event.preventDefault();
     //imutabilidade
     //spreed le o valor e copia.
     setComments([...comments, newCommentText]);
     setnewCommentText("");
   }
-
-  function handlenewCommentTextChange() {
+  //declara q foi feito no HTMLTextAreaElement 
+  function handlenewCommentTextChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("");
     setnewCommentText(event.target.value);
   }
 
-  function handlenewCommentTextInvalid() {
+  function handlenewCommentTextInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("O comentário não pode ser vazio!");
   }
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(commentToDelete: string) {
     //imutabilidade as variaveis nao sofrem mutação
     //criamos um novo espaço na memoria
     const commentWhithoutDeletedOne = comments.filter((comment) => {
@@ -47,27 +70,26 @@ export function Post({ author, publishedAt, content }) {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar hasBorder={true} src={author.avatarUrl} />
+          <Avatar hasBorder={true} src={post.author.avatarUrl} />
 
           <div className={styles.authorInfo}>
-            <strong>{author.name}</strong>
-            <span>{author.role}</span>
+            <strong>{post.author.name}</strong>
+            <span>{post.author.role}</span>
           </div>
         </div>
 
         <time
-          title={format(publishedAt, "dd MMM yyyy 'ás' HH:mm'h", {
+          title={format(post.publishedAt, "dd MMM yyyy 'ás' HH:mm'h", {
             locale: ptBR,
-            addSuffix: true,
           })}
-          dateTime={publishedAt.toISOString()}
+          dateTime={post.publishedAt.toISOString()}
         >
-          {formatDistanceToNow(publishedAt, { locale: ptBR })}
+          {formatDistanceToNow(post.publishedAt, { locale: ptBR })}
         </time>
       </header>
 
       <div className={styles.content}>
-        {content.map((item, index) => {
+        {post.content.map((item, index) => {
           switch (item.type) {
             case "paragraph":
               return <p key={index}>{item.content}</p>;
@@ -84,7 +106,7 @@ export function Post({ author, publishedAt, content }) {
       </div>
 
       <form
-        onSubmit={handleCreatenewCommentText}
+        onSubmit={handleCreateNewCommentText}
         className={styles.commentForm}
       >
         <strong>Deixe seu feedback</strong>

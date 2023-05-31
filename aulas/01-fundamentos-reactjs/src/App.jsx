@@ -4,6 +4,59 @@ import { Sidebar } from "./components/Sidebar";
 
 import "./global.css";
 import styles from "./App.module.css";
+
+// author {avatar_url: "", name: "", role: ""}
+// publishedAt: Date
+// content: string
+
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: "https://github.com/fallerbruno.png",
+      name: "Bruno Faller",
+      role: "Web Developer",
+    },
+    publishedAt: new Date("2023-05-30 23:00:00"),
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz",
+      },
+      {
+        type: "paragraph",
+        content:
+          "no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+      { type: "link", content: "novoprojeto" },
+      { type: "link", content: "nlw" },
+    ],
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: "https://github.com/yurikerber.png",
+      name: "Yuri Kerber",
+      role: "Estagiario",
+    },
+    publishedAt: new Date("2023-05-31 08:00:00"),
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      { type: "paragraph", content: "Acabei de aprender Html e CSS" },
+      {
+        type: "paragraph",
+        content:
+          "no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "yurikerber.com.br" },
+      { type: "link", content: "novoprojeto" },
+      { type: "link", content: "nlw" },
+    ],
+  },
+];
 export function App() {
   return (
     <div>
@@ -12,11 +65,16 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author="Bruno Faller"
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit eius beatae molestias assumenda optio commodi in accusantium minus. Odit quia alias quo inventore beatae corporis dignissimos iste ipsum? Laboriosam, nam."
-          />
-          <Post author="Bruno Faller" content="Bola Redonda nao eh quadrada" />
+          {posts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                author={post.author}
+                publishedAt={post.publishedAt}
+                content={post.content}
+              />
+            );
+          })}
         </main>
       </div>
     </div>
