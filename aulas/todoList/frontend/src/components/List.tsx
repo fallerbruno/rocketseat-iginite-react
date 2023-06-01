@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Todo } from "./Todo";
 export function List() {
   const [todoList, setTodoList] = useState([]);
-  const empty = todoList.length === 0;
+  const empty  =false;
   return (
     <>
       <ListHeader />
@@ -23,7 +23,10 @@ export function List() {
               />
             </div>
           ) : (
+            <div className={styles.contain}>
             <Todo />
+            <Todo />
+            </div>
           )}
         </div>
       </div>

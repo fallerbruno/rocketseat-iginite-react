@@ -14,10 +14,7 @@
   --purple-dark: #5e60ce;
   --purple: #8284fa;
 
-  --done: #004987;
-  --doing: #4cd62b;
-  --pending: #fcd12a;
-  --canceled: #e25858;
+  --red: #e25858;
 }
 
 /* :focus {
