@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 46rem;
+  border-bottom: 1px solid var(--gray-400);
+  padding: 5rem 0 1rem 0;
+}
+
+.todoStatus {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.todoStatus span{
+    background-color: var(--gray-700);
+    padding: 0.3rem;
+    border-radius: 8px;
+}
+
+.make {
+    color: var(--blue-dark);
+}
+
+.done {
+    color: var(--blue);
+}

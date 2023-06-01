@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .todo {
+    display: flex;
+    flex-direction: column;
+    width: 46rem;
+    gap: 1rem;
+  }
+  
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1rem;
+    padding: 2rem;
+  }
+
+  .empty h3 {
+    color: var(--gray-200);
+    font-weight: bold;
+  }
+  .empty h4 {
+    color: var(--gray-300);
+    font-weight: semi-bold;
+  }
