@@ -58,7 +58,6 @@
     height: 4rem;
     padding: 0 2rem;
     transition: background-color 0.2s;
-    cursor: pointer;
 
     display: flex;
     align-items: center;

@@ -3,7 +3,7 @@ import styles from "./ListHeader.module.css";
 interface ListHeaderProps {
   todoList :{
     id: number;
-    todo: string;
+    todoList: Array<string>;
     checked: boolean;
   }
 }
