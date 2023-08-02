@@ -1,10 +1,17 @@
-import { ReactNode, createContext, useReducer, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { Cycle, cyclesReducer } from '../reducers/cycles/reducer'
 import {
-  ActionTypes,
   addNewCycleAction,
+  interruptCurrentCycleAction,
   markAsFinishedCycleAction,
 } from '../reducers/cycles/actions'
+import { differenceInSeconds } from 'date-fns'
 interface CreateCycleData {
   task: string
   minutesAmout: number
@@ -30,16 +37,37 @@ export const CyclesContext = createContext({} as CyclesContextType)
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cyclesState, dispatch] = useReducer(cyclesReducer, {
-    cycles: [],
-    activeCycleId: null,
-  })
-
-  const [amountSecondsPassed, setAmmountSecondsPassed] = useState(0)
-
+  const [cyclesState, dispatch] = useReducer(
+    cyclesReducer,
+    {
+      cycles: [],
+      activeCycleId: null,
+    },
+    // segundo parametro do reducer initialState
+    (initialState) => {
+      const storageStateAsJson = localStorage.getItem(
+        '@ignite-timmer:cycles-state-1.0.0',
+      )
+      if (storageStateAsJson) {
+        return JSON.parse(storageStateAsJson)
+      }
+      return initialState
+    },
+  )
   const { cycles, activeCycleId } = cyclesState
-
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  useEffect(() => {
+    const stateJson = JSON.stringify(cyclesState)
+    localStorage.setItem('@ignite-timmer:cycles-state-1.0.0', stateJson)
+  }, [cyclesState])
+
+  const [amountSecondsPassed, setAmmountSecondsPassed] = useState(() => {
+    if (activeCycle) {
+      return differenceInSeconds(new Date(), new Date(activeCycle.startDate))
+    }
+    return 0
+  })
 
   function setSecondsPassed(seconds: number) {
     setAmmountSecondsPassed(seconds)
@@ -62,12 +90,7 @@ export function CyclesContextProvider({
   }
 
   function interruptCurrentCycle() {
-    dispatch({
-      type: ActionTypes.INTERRUPT_CURRENT_CYCLE,
-      payload: {
-        activeCycleId,
-      },
-    })
+    dispatch(interruptCurrentCycleAction())
   }
 
   return (
