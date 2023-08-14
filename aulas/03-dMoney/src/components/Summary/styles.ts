@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import { css, styled } from 'styled-components'
 
 export const SummaryContainer = styled.section`
   width: 100%;
@@ -11,32 +11,33 @@ export const SummaryContainer = styled.section`
 
   grid-template-columns: repeat(3, 1fr);
   margin-top: -5rem;
-
-`;
+`
 
 interface SummaryCardProps {
-    variant?: 'green';
+  variant?: 'green'
 }
 
-export const SummaryCard = styled.div<SummaryCardProps> `
-    background-color: ${props => props.theme["gray-600"]};
-    border-radius: 6px;
-    padding: 2rem;
+export const SummaryCard = styled.div<SummaryCardProps>`
+  background-color: ${(props) => props.theme['gray-600']};
+  border-radius: 6px;
+  padding: 2rem;
 
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color : ${props => props.theme["gray-300"]}
-    }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: ${(props) => props.theme['gray-300']};
+  }
 
-    strong {
-        display: block;
-        margin-top: 1rem;
-        font-size: 2rem;
-    }
+  strong {
+    display: block;
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
 
-    ${props => props.variant === 'green' && css `
-        background-color: ${props.theme["green-700"]}
-    ` }
+  ${(props) =>
+    props.variant === 'green' &&
+    css`
+      background-color: ${props.theme['green-700']};
+    `}
 `

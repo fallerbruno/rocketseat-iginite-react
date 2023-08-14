@@ -1,0 +1,21 @@
+npx json-server server.json -w -d 500
+
+PORQUE UM COMPONENTE RENDERELIZA?
+
+- Hooks Changed(mudou estado, contexto, reducer, etc)
+
+- Props Changed(mudou propriedades)
+
+-Parent rerendered (componentes pais renderizaram)
+
+QUAL FLUXO DE RENDERIZAÇÃO?
+
+1. o React recria o HTML da interface daquele componentes
+2. Compara a versão do HTML com a versão anterior 
+3. Se mudou algo, ele reescreve o HTML na Tela
+
+MEMO: 
+
+0. Mudou algo nos Hooks, mudou algo nas Props (deep comparison)
+0.1 Comparar a versao anterior dos hooks e Props
+0.2 SE mudou algo, ele vai permitir a nova reendereizacao

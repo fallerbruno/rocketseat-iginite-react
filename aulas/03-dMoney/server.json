@@ -1,0 +1,44 @@
+{
+  "transactions": [
+    {
+      "id": "1",
+      "description": "Desenvolvimento do Site",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2023-08-14T14:05:18.824Z"
+    },
+    {
+      "id": "2",
+      "description": "Hamburger",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 30,
+      "createdAt": "2023-08-14T12:05:18.824Z"
+    },
+    {
+      "id": "3",
+      "description": "Ignite Rocketseat",
+      "type": "outcome",
+      "category": "Estudos",
+      "price": 1980,
+      "createdAt": "2023-08-14T15:05:18.824Z"
+    },
+    {
+      "description": "Freelance Clinica Experts",
+      "price": 500,
+      "category": "Job",
+      "type": "income",
+      "createdAt": "2023-08-14T17:46:15.714Z",
+      "id": "jkcV-GV"
+    },
+    {
+      "description": "Pix para mana",
+      "price": 50,
+      "category": "pagamento",
+      "type": "outcome",
+      "createdAt": "2023-08-14T18:01:23.275Z",
+      "id": "4aAB36S"
+    }
+  ]
+}
