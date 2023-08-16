@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useState } from "react";
 import Head from "next/head";
+import * as Sentry from "@sentry/browser";
 
 interface ProductProps {
   product: {
@@ -50,9 +51,16 @@ export default function Product({ product }: ProductProps) {
         window.location.href = checkoutUrl;
       }, 1000);
     } catch (error) {
-      console.log(error);
       setIsCreationCheckoutSession(false);
-      // conectar com uma ferramenta de observalibilidade (DataDog ou Sentry)
+      Sentry.init({
+        dsn: "https://7b01ad120bca4b54b36a91b602e0ac42@o4505716523139072.ingest.sentry.io/4505716525498368",
+        integrations: [new Sentry.BrowserTracing()],
+        // Performance Monitoring
+        tracesSampleRate: 1.0, // Capture 100% of the transactions, reduce in production!
+        // Session Replay
+        replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+        replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+      });
       toast("Erro ao processar o pagamento");
     }
   }
