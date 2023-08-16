@@ -1,0 +1,7 @@
+npx create-next-app@latest
+fazer sem router da v13 por enquanto.
+estudar a versao 13 apos finalizar
+
+instalar  npm i typescript @types/react @types/node -D
+
+Roteamento...pode ser feito atraves de pastas por exmeplo em product ter um index e outro arquivo o diretorio ficaria /product/teste por exemplo
