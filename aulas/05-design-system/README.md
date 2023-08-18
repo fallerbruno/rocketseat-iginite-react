@@ -30,5 +30,11 @@ package global privado onde tem os workspaces liberados
 [ ]BoxShadow
 [ ]Animation
 [ ]BreakPoints
-
+[x]Colors
+[x]FontSize
+[x]FontWeight
+[x]Fonts
+[x]LineHeights
+[x]Radius
+[x]Space
 
