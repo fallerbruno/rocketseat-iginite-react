@@ -1,5 +1,14 @@
-import { colors } from '@faller-bruno-ui/tokens'
+import { styled } from './styles'
+
+const Button = styled('button', {
+  fontFamily: '$default',
+  backgroundColor: '$green900',
+  borderRadius: '$md',
+  padding: '$4',
+  height: '$12',
+  width: '$48',
+})
 
 export function App() {
-  return <h1 style={{ color: colors.green900 }}>Hello World</h1>
+  return <Button>Hello World</Button>
 }
