@@ -38,3 +38,9 @@ package global privado onde tem os workspaces liberados
 [x]Radius
 [x]Space
 
+# STORYBOOK
+pasta docs
+
+npx sb init --builder @storybook/builder-vite --type react --use-npm
+
+

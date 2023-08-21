@@ -1,0 +1,4 @@
+{
+  "extends": "@faller-bruno-ui/ts-config/react.json",
+  "include": ["src"]
+}
